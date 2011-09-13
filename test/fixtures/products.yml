@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  Pcode: MyString
+  Pname: MyString
+  cost: 1
+  description: MyText
+  remarks: MyString
+
+two:
+  Pcode: MyString
+  Pname: MyString
+  cost: 1
+  description: MyText
+  remarks: MyString

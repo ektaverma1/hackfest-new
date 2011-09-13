@@ -1,4 +1,6 @@
 Hackfest::Application.routes.draw do
+  resources :products
+
   resources :sub_categories
 
   resources :categories
