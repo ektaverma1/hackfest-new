@@ -2,8 +2,10 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
-    @products = Product.all
-
+    @category = Category.find_by_id(params[:category_id])
+    @sub_category = SubCategory.find_by_id(params[:sub_category_id])
+    @products = Product.where(:sub_category_id => params[:sub_category_id])
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
@@ -24,7 +26,8 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.xml
   def new
-    @product = Product.new
+    @sub_category = SubCategory.find_by_id(params[:sub_category_id])
+    @product = Product.new(:sub_category_id => params[:sub_category_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,8 +43,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.xml
   def create
-    @product = Product.new(params[:product])
-
+    @product = Product.new(params[:product].merge(:sub_category_id => params[:sub_category_id]))
     respond_to do |format|
       if @product.save
         format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
@@ -76,7 +78,8 @@ class ProductsController < ApplicationController
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to(products_url) }
+#      format.html { redirect_to products_path(:sub_category_id => @product.sub_category_id) }
+      format.html { redirect_to (products_url) }
       format.xml  { head :ok }
     end
   end

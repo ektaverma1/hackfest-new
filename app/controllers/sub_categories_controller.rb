@@ -14,6 +14,7 @@ class SubCategoriesController < ApplicationController
   # GET /sub_categories/1
   # GET /sub_categories/1.xml
   def show
+#    @category = Category.find(params[:id])
     @sub_category = SubCategory.find(params[:id])
 
     respond_to do |format|
